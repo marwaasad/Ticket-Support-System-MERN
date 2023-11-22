@@ -83,8 +83,8 @@ app.post('/users/login', async (req, res) => {
 
     // Generate a JWT token
     const token = jwt.sign({ userId: user._id }, '76B486F9CB43E4209D3BABDD478B894DAB2D8122EDF9F71FAC225A98E63D02EB', { expiresIn: '1h' });
-
-    res.json({ token });
+    const base64Decoded = Buffer.from(token, 'base64');
+    res.json({ base64Decoded });
   } catch (error) {
     console.error('Error during login:', error);
     res.status(500).json({ error: 'Internal server error' });

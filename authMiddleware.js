@@ -1,6 +1,5 @@
 // authMiddleware.js
 const { jwtDecode } = require('jwt-decode');
-const { atob } = require('atob');
 
 function getUserIdFromToken(authorizationHeader) {
   try {
@@ -19,7 +18,7 @@ function getUserIdFromToken(authorizationHeader) {
     const token = tokenParts[1];
 
     // Decode the token and return the userId
-    const decodedToken = jwtDecode(atob(token)); // Use the atob replacement here
+    const decodedToken = jwtDecode(token); // Use the atob replacement here
     return decodedToken.userId;
   } catch (error) {
     console.error('Error in getUserIdFromToken:', error.message);

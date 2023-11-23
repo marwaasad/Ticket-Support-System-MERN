@@ -17,8 +17,13 @@ const PORT = 5000;
 
 // Middleware
 app.use(express.json());
-app.use(cors());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors({
+  origin: 'http://localhost:3000',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  allowedHeaders: 'Authorization, Content-Type',
+  credentials: true,
+}));
 
 // Connect to MongoDB
 const mongoURI = "mongodb+srv://asadmarwa22:xyz123456@cluster0.g4g0cu3.mongodb.net/Ticket_Support_System"     

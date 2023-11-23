@@ -1,10 +1,6 @@
 // authMiddleware.js
 const { jwtDecode } = require('jwt-decode');
-import 'core-js/stable/atob';
-
-function atob(input) {
-  return Buffer.from(input, 'base64').toString('binary');
-}
+const { atob } = require('atob');
 
 function getUserIdFromToken(authorizationHeader) {
   try {

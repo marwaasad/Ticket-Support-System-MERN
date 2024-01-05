@@ -1,4 +1,6 @@
 // server.js
+
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -27,7 +29,7 @@ app.use(cors({
 
 
 // Connect to MongoDB
-const mongoURI = "mongodb+srv://asadmarwa22:xyz123456@cluster0.g4g0cu3.mongodb.net/Ticket_Support_System"     
+const mongoURI = "mongodb+srv://asadmarwa22:@cluster0.g4g0cu3.mongodb.net/Ticket_Support_System"     
 
 mongoose
   .connect(
@@ -88,7 +90,7 @@ app.post('/users/login', async (req, res) => {
     }
 
     // Generate a JWT token
-    const token = jwt.sign({ userId: user._id }, '76B486F9CB43E4209D3BABDD478B894DAB2D8122EDF9F71FAC225A98E63D02EB', { expiresIn: '30d' });
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '30d' });
     res.json({ token });
   } catch (error) {
     console.error('Error during login:', error);
